@@ -30,12 +30,29 @@ export class ResultTableComponent implements OnInit {
     constructor(
     private dpllService: dpllService,
     private sharedDataService: SharedDataService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.sharedDataService.currentData$.subscribe(
       data => {
-        this.x0 = data;
+        if (data.fun && data.x0 && data.h) {
+          this.fun = data.fun;
+          this.x0 = data.x0;
+          this.h = data.h;
+          this.errorMessage = "";
+
+          let result = this.dpllService.dpllAlgorithm(data.x0, data.h, this.iMax, data.fun);
+
+          if (typeof result === 'string') {
+            this.errorMessage = result;
+          } else {
+            this.resultSource = result;
+          }
+        }
+        else {
+          this.resultSource = [];
+          this.errorMessage = "Введені не вірні дані";
+        }
       }
     )
   }

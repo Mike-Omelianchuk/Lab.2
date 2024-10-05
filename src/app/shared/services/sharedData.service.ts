@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
+
+interface argumentInterface {
+    fun?: (x:number) => number;
+    x0?: number;
+    h?: number;
+}
 
 @Injectable()
 export class SharedDataService {
     
-    private data = new BehaviorSubject(0);
+    private data = new ReplaySubject<argumentInterface>(1);
     currentData$ = this.data.asObservable();
 
-    setData(data: number) {
+    setData(data: argumentInterface) {
         this.data.next(data);
     }
 }

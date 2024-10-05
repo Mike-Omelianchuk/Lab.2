@@ -10,6 +10,7 @@ export class dpllService {
 
     dpllAlgorithm(x: number | undefined = 0, h: number | undefined = 0, iMax: number, 
                     fun: ((x: number) => number) | undefined = (x) => 0): ResultInterface[] | string {
+        this.resultTable = [];
         let x0 = x;
         
         let x1 = x0 - h;

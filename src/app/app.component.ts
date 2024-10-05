@@ -34,7 +34,11 @@ export class AppComponent {
    
     this.errorMessage = '';
 
-    this.sharedDataService.setData(this.x0);
+    this.sharedDataService.setData({
+      fun: fun,
+      x0: this.x0,
+      h: this.h
+    });
   }
 
   convertStringToFunction(funcString: string): (x: number) => number {
@@ -48,6 +52,8 @@ export class AppComponent {
       return func as (x: number) => number;
       
     } catch (e) {
+      this.errorMessage = 'Функція введена не вірно, перевірте поле вводу';
+
       throw new Error('Функція введена не вірно, перевірте поле вводу');
     }
   }
