@@ -1,0 +1,21 @@
+<table class="result-table">
+    <thead>
+      <tr>
+        <th
+          *ngFor="let column of columns"
+          class="result-table-cell"
+        >
+          {{ column }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of resultSource">
+        <td *ngFor="let column of columns" class="result-table-cell">
+          {{ result[column] }}
+        </td>
+      </tr>
+    </tbody>
+</table>
+x0 from result component: {{x0}}
+<br>
