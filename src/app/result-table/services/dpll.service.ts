@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { ResultInterface } from "../types/result.interface";
+import { ErrorMessages } from "../../shared/enums/error-mesages";
 
 
 @Injectable()
@@ -28,8 +29,7 @@ export class dpllService {
             b = x2;
         }
         else if (f1 < f0 && f2 < f0) {
-            console.log("Функція не є унімодальною на початковому інтервалі, будь ласка, змініть функцію");
-            return "Функція не є унімодальною на початковому інтервалі";
+            return ErrorMessages.nonUnimodalFunction;
         }
         
         if (f1 <= f2) {
@@ -71,6 +71,6 @@ export class dpllService {
             }
         }
 
-        return "Початкова точка занадто далеко від точки мінімуму";
+        return ErrorMessages.startPointToFar;
     }
 }
